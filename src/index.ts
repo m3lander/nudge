@@ -139,7 +139,7 @@ Bun.serve({
       },
     },
   },
-  fetch: () => new Response("momo control plane\n", { status: 404 }),
+  fetch: () => new Response("nudge control plane\n", { status: 404 }),
 });
 
 // ── Boot ─────────────────────────────────────────────────────────────────────

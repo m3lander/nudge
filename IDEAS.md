@@ -24,10 +24,10 @@ A proactive AI agent you text over iMessage that acts as your external executive
 
 ## Demo script v1 (proposed 2026-07-18, ~2 min, TIME_SCALE=20, caption "check-ins compressed")
 Story: "I've been avoiding writing this post for two weeks."
-1. **0:00 Cold open** — text Momo the dreaded task → typing indicator → tiny first step + "I'll check in soon" (silent mode namedrop).
-2. **0:25 The money shot** — phone idle / you doomscrolling; unprompted notification drops in. Reply "didn't start, got distracted" → Momo shrinks the step, zero guilt, re-arms.
+1. **0:00 Cold open** — text Nudge the dreaded task → typing indicator → tiny first step + "I'll check in soon" (silent mode namedrop).
+2. **0:25 The money shot** — phone idle / you doomscrolling; unprompted notification drops in. Reply "didn't start, got distracted" → Nudge shrinks the step, zero guilt, re-arms.
 3. **0:55 Proof gate** — next check-in: you did it. Send photo → ❤️ tapback + full-screen confetti "YOU DID THE THING".
-4. **1:25 It doesn't let go** — check-in ignored entirely → Momo follows up on its own (no-reply watchdog). Optional: "next morning" cut → 9am kickoff text.
+4. **1:25 It doesn't let go** — check-in ignored entirely → Nudge follows up on its own (no-reply watchdog). Optional: "next morning" cut → 9am kickoff text.
 5. **1:50 End card** — one-liner + feature flash.
 Film: iPhone screen-recording (or QuickTime via cable) — lock-screen notifications are the emotional payload; Mac Messages as fallback.
 

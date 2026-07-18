@@ -1,6 +1,6 @@
 // One-command demo: `bun run demo`
 // Starts the agent server + distraction watcher, then fires the kickoff —
-// Momo texts you asking what you're working on. Ctrl+C stops everything.
+// Nudge texts you asking what you're working on. Ctrl+C stops everything.
 const CONTROL = `http://127.0.0.1:${process.env.CONTROL_PORT ?? "4550"}`;
 
 console.log("▶ starting agent server…");

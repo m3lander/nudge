@@ -9,7 +9,7 @@ import type { ImageContent } from "@earendil-works/pi-ai";
  * permission for the terminal running the agent.
  */
 export async function captureFrontWindow(): Promise<ImageContent | undefined> {
-  const path = `/tmp/momo-proof-${Date.now()}.png`;
+  const path = `/tmp/nudge-proof-${Date.now()}.png`;
   try {
     try {
       const raw = (

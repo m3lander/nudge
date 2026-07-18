@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { ask, createCoach } from "../src/agent";
 
-const shot = "/tmp/momo-vision-test.png";
+const shot = "/tmp/nudge-vision-test.png";
 let data: string;
 try {
   execSync(`screencapture -x -t png ${shot}`, { stdio: "ignore" });

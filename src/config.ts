@@ -17,7 +17,7 @@ export const config = {
   echoMode: process.env.ECHO_MODE === "1",
   /** "provider/model", e.g. "openai-codex/gpt-5.6-terra". Empty → pi settings default. */
   agentModel: process.env.AGENT_MODEL ?? "",
-  agentName: process.env.AGENT_NAME ?? "Momo",
+  agentName: process.env.AGENT_NAME ?? "Nudge",
   timersPath: new URL("../timers.json", import.meta.url).pathname,
   /** Local control-plane port (kickoff + sidecar events). */
   controlPort: Number(process.env.CONTROL_PORT ?? "4550"),
