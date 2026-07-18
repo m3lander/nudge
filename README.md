@@ -88,7 +88,3 @@ macOS permissions (asked on first use): Screen Recording for proof screenshots; 
 - **Recurring routines** — morning kickoff / evening review without the manual trigger.
 - **Idle nudge** — a day of silence → gentle ping.
 - **External triggers** — calendar pre-warnings ("meeting in 15 — wrap up"), email-verified proof gates ("actually send the email and I'll see it"), voice-call escalation for the truly unignorable check-in.
-
----
-
-*Momo is a prototype, not a medical device — it's an experiment in what proactive, RSD-aware AI accountability could feel like.*
