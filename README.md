@@ -76,7 +76,10 @@ bun install
 cp .env.example .env   # fill in Spectrum credentials + your phone number
 pi                      # once, to auth a model provider (we use Codex)
 bun run demo            # starts agent + distraction watcher, Nudge texts you first
+bun run demo:live       # same, in live-demo mode: timers hard-capped at 60s, 1-min watchdog
 ```
+
+`bun demo` also clears any stale server holding the control port, so it's safe to re-run.
 
 Useful during development: `bun run dev` (agent only, hot reload), `bun run kickoff` (re-fire the opening text), `bun run timer` (pop the HUD), `TIME_SCALE=20` in `.env` (compress "10 minutes" to 30 s), `ECHO_MODE=1` (plumbing test without the model).
 

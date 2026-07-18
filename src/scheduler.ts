@@ -65,7 +65,9 @@ export class Scheduler {
 
   /** delaySeconds is the agent-requested (real) delay; TIME_SCALE compresses it. */
   schedule(delaySeconds: number, note: string, silent: boolean, captureScreen = false): Checkin {
-    const scaledMs = Math.max(1000, (delaySeconds * 1000) / config.timeScale);
+    let scaledMs = Math.max(1000, (delaySeconds * 1000) / config.timeScale);
+    // Live-demo mode: nothing waits longer than a minute.
+    if (config.demoMode) scaledMs = Math.min(scaledMs, 60_000);
     const checkin: Checkin = {
       id: this.store.nextId++,
       note,

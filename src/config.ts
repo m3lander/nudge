@@ -21,8 +21,10 @@ export const config = {
   timersPath: new URL("../timers.json", import.meta.url).pathname,
   /** Local control-plane port (kickoff + sidecar events). */
   controlPort: Number(process.env.CONTROL_PORT ?? "4550"),
+  /** Live-demo mode: check-in timers clamped to ≤60s, snappy watchdog, terse persona. */
+  demoMode: process.env.DEMO_MODE === "1",
   /** Minutes of silence after a check-in before the no-reply watchdog re-wakes the agent (TIME_SCALE applies). */
-  watchdogMinutes: Number(process.env.WATCHDOG_MINUTES ?? "5"),
+  watchdogMinutes: Number(process.env.WATCHDOG_MINUTES ?? (process.env.DEMO_MODE === "1" ? "1" : "5")),
 };
 
 export function isOwner(handle: string | null): boolean {

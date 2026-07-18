@@ -111,7 +111,8 @@ async function onMessage({ text, images, space }: Incoming) {
 }
 
 // ── Local control plane (kickoff + sidecar events) ───────────────────────────
-Bun.serve({
+try {
+  Bun.serve({
   hostname: "127.0.0.1",
   port: config.controlPort,
   routes: {
@@ -140,7 +141,16 @@ Bun.serve({
     },
   },
   fetch: () => new Response("nudge control plane\n", { status: 404 }),
-});
+  });
+} catch (err) {
+  if ((err as { code?: string })?.code === "EADDRINUSE") {
+    console.error(
+      `Port ${config.controlPort} is already in use — another nudge instance is running.\nStop it first (or use \`bun demo\`, which clears stale servers automatically).`,
+    );
+    process.exit(1);
+  }
+  throw err;
+}
 
 // ── Boot ─────────────────────────────────────────────────────────────────────
 const restored = scheduler.restore();

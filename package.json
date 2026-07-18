@@ -9,6 +9,7 @@
     "watch": "bun run src/watcher.ts",
     "kickoff": "curl -s -X POST http://127.0.0.1:4550/kickoff",
     "demo": "bun run scripts/demo.ts",
+    "demo:live": "DEMO_MODE=1 bun run scripts/demo.ts",
     "timer": "bun run scripts/open-hud.ts",
     "typecheck": "bunx tsc --noEmit"
   },

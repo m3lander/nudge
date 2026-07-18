@@ -49,9 +49,13 @@ export function createCoachTools(scheduler: Scheduler, actions: CoachActions): T
         params.silent ?? false,
         params.capture_screen ?? false,
       );
-      const scaled = config.timeScale !== 1 ? ` (demo TIME_SCALE=${config.timeScale} applied)` : "";
+      const actualSec = Math.round((c.fireAtMs - Date.now()) / 1000);
+      const clamped =
+        config.demoMode && actualSec < params.delay_minutes * 60
+          ? " (LIVE DEMO MODE clamped it — tell the user the real duration)"
+          : "";
       return ok(
-        `Check-in #${c.id} scheduled for ${params.delay_minutes} min from now${scaled}. Fires at ${new Date(c.fireAtMs).toLocaleTimeString()}.`,
+        `Check-in #${c.id} will fire in ~${actualSec}s, at ${new Date(c.fireAtMs).toLocaleTimeString()}${clamped}.`,
         c,
       );
     },
