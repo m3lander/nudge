@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Momo ⏳</title>
+<style>
+  :root { color-scheme: dark; }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: ui-rounded, -apple-system, "SF Pro Rounded", system-ui, sans-serif;
+    background: #0e0e12;
+    color: #f2f2f7;
+    display: flex; align-items: center;
+    padding: 0 14px; gap: 12px;
+    overflow: hidden; user-select: none; white-space: nowrap;
+  }
+  #brand { font-size: 15px; flex-shrink: 0; }
+  #brand.stale { filter: grayscale(1); opacity: .4; }
+  #list { display: flex; align-items: center; gap: 14px; overflow: hidden; }
+  .timer { display: flex; align-items: baseline; gap: 7px; min-width: 0; }
+  .countdown {
+    font-variant-numeric: tabular-nums;
+    font-size: 24px; font-weight: 800; letter-spacing: -0.02em;
+    color: #34c759;
+  }
+  .timer.soon .countdown { color: #ff9f0a; }
+  .timer.now .countdown { color: #ff453a; animation: pulse 1s infinite; }
+  .timer.silent .countdown { font-size: 17px; color: #bf5af2; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .note {
+    font-size: 11px; color: #8e8e96;
+    max-width: 190px; overflow: hidden; text-overflow: ellipsis;
+  }
+  #empty { font-size: 12px; font-weight: 600; color: #4a4a52; }
+</style>
+</head>
+<body>
+  <span id="brand">⏳</span>
+  <main id="list"><span id="empty">no timers</span></main>
+  <script>
+    let pending = [];
+    const esc = (s) => s.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]));
+    const fmt = (ms) => {
+      if (ms <= 0) return "now";
+      const s = Math.ceil(ms / 1000);
+      const m = Math.floor(s / 60);
+      return m >= 60
+        ? `${Math.floor(m / 60)}h${String(m % 60).padStart(2, "0")}`
+        : `${m}:${String(s % 60).padStart(2, "0")}`;
+    };
+    function render() {
+      const list = document.getElementById("list");
+      if (pending.length === 0) {
+        list.innerHTML = '<span id="empty">no timers</span>';
+        return;
+      }
+      list.innerHTML = pending.map((t) => {
+        const left = t.fireAtMs - Date.now();
+        const cls = t.silent ? "silent" : left <= 0 ? "now" : left < 60_000 ? "soon" : "";
+        const count = t.silent ? "🤫 soon" : fmt(left);
+        return `<span class="timer ${cls}"><span class="countdown">${count}</span><span class="note">${esc(t.note)}</span></span>`;
+      }).join("");
+    }
+    async function refresh() {
+      try {
+        const res = await fetch("/timers");
+        pending = (await res.json()).pending;
+        document.getElementById("brand").classList.remove("stale");
+      } catch {
+        document.getElementById("brand").classList.add("stale");
+      }
+    }
+    refresh();
+    setInterval(refresh, 2000);
+    setInterval(render, 250);
+  </script>
+</body>
+</html>

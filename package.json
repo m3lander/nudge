@@ -1,0 +1,26 @@
+{
+  "name": "momo",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "watch": "bun run src/watcher.ts",
+    "kickoff": "curl -s -X POST http://127.0.0.1:4550/kickoff",
+    "demo": "bun run scripts/demo.ts",
+    "timer": "bun run scripts/open-hud.ts",
+    "typecheck": "bunx tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@earendil-works/pi-coding-agent": "^0.80.10",
+    "@sinclair/typebox": "^0.34.52",
+    "spectrum-ts": "^11.2.0"
+  }
+}
